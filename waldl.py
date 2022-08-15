@@ -4,6 +4,7 @@ import threading
 import requests
 from random import choices
 from string import ascii_lowercase, digits
+from collpy import cprint
 import os
 import time
 
@@ -42,15 +43,19 @@ def download_wallpaper(wallpaper_url):
 
 
 query = input("Enter wallpaper name keyword: ")
-page_number = input("Enter page number: ")
-wallpaper_urls = search_wallpaper(query, page_number)
+page_range = input("How many pages [ex: 1-4]: ")
 
+try:
+    first_number, second_number = page_range.split("-")
 
-if len(wallpaper_urls) != 0:
-    for url in wallpaper_urls:
-        print(f"Downloading wallpaper: [{url}]")
-        t = threading.Thread(target=download_wallpaper, args=(url,))
-        t.start()
+    for page_number in range(int(first_number), int(second_number) + 1):
+        wallpaper_urls = search_wallpaper(query, page_number)
+        cprint(txt=f"[+] Downloading wallpapers of page: {page_number}", color="purple")
 
-else:
-    print("Invalid wallpaper name or page number!! Try again.")
+        for url in wallpaper_urls:
+            cprint(txt=f"[+] Downloading wallpaper: [{url}]", color="blue")
+            t = threading.Thread(target=download_wallpaper, args=(url,))
+            t.start()
+
+except Exception:
+    print(Exception)

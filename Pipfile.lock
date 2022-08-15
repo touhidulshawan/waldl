@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a416d48a2c30d4acf425cb96d7ac6672753db8e8f6c962a328848db5b9a290a1"
+            "sha256": "de4ec7eef127aea6d04fe8445a9ef2a6521c8eab1425df951fc9f7935f613c20"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -31,6 +31,14 @@
             ],
             "markers": "python_full_version >= '3.6.0'",
             "version": "==2.1.0"
+        },
+        "collpy": {
+            "hashes": [
+                "sha256:8fd98c8dee1a0fb898ed3a58a1ec9cc0b73cca37b1b9ad1157990ea716c4abca",
+                "sha256:e798a4638d5eea304372aaf87ba56c72c7190063886b5b85b9c6682bb4713a31"
+            ],
+            "index": "pypi",
+            "version": "==0.0.4"
         },
         "idna": {
             "hashes": [
