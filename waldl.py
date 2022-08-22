@@ -7,6 +7,7 @@ from string import ascii_lowercase, digits
 from collpy import cprint
 import os
 
+# change this location according to your preference
 image_save_path = "/home/shawan/Pictures/wallhaven/" 
 
 # search wallpaper
