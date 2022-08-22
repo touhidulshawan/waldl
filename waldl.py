@@ -6,8 +6,8 @@ from random import choices
 from string import ascii_lowercase, digits
 from collpy import cprint
 import os
-import time
 
+image_save_path = "/home/shawan/Pictures/wallhaven/" 
 
 # search wallpaper
 
@@ -19,8 +19,9 @@ def search_wallpaper(query, page_number):
 
     download_path = []
 
-    for wallpaper in json_data["data"]:
-        download_path.append(wallpaper["path"])
+    if len(json_data["data"]) > 0:
+        for wallpaper in json_data["data"]:
+            download_path.append(wallpaper["path"])
 
     return download_path
 
@@ -38,7 +39,7 @@ def wallpaper_name():
 def download_wallpaper(wallpaper_url):
     res = requests.get(url=wallpaper_url)
     extension = os.path.splitext(wallpaper_url)[1]
-    save_path = f"/home/shawan/Pictures/wallhaven/{wallpaper_name()}{extension}"
+    save_path = f"{image_save_path}{wallpaper_name()}{extension}"
     open(save_path, "wb").write(res.content)
 
 
@@ -50,12 +51,18 @@ try:
 
     for page_number in range(int(first_number), int(second_number) + 1):
         wallpaper_urls = search_wallpaper(query, page_number)
-        cprint(txt=f"[+] Downloading wallpapers of page: {page_number}", color="purple")
 
-        for url in wallpaper_urls:
-            cprint(txt=f"[+] Downloading wallpaper: [{url}]", color="blue")
-            t = threading.Thread(target=download_wallpaper, args=(url,))
-            t.start()
+        if len(wallpaper_urls) > 0:
+            cprint(txt=f"[+] Downloading wallpapers of page: {page_number}", color="purple")
+
+            for url in wallpaper_urls:
+                cprint(txt=f"[+] Downloading wallpaper: [{url}]", color="blue")
+                t = threading.Thread(target=download_wallpaper, args=(url,))
+                t.start()
+        else:
+            cprint(txt=f"404:: No image found for : {query}", color="red")
+            break
+        cprint(txt=f"Images saved on {image_save_path}", color="green")
 
 except Exception:
-    print(Exception)
+    cprint(txt="Something not right :( | Try again.", color="red")
