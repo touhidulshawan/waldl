@@ -57,7 +57,10 @@ def total_pages(query):
     last_page_number = data["last_page"]
     return last_page_number
 
-query = input("Enter wallpaper name keyword: ")
+
+example_tags = ["digital art", "anime", "nature", "landscape", "4k", "artwork"]
+cprint(txt=f"Some tags {example_tags}", color="blue")
+query = input("Enter wallpaper tag: ")
 last_page_number = total_pages(query)
 cprint(txt=f"Total page found: {last_page_number}", color="blue")
 
