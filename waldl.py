@@ -58,7 +58,8 @@ def total_pages(query):
     return last_page_number
 
 query = input("Enter wallpaper name keyword: ")
-cprint(txt=f"Total page found: {total_pages(query)}")
+last_page_number = total_pages(query)
+cprint(txt=f"Total page found: {last_page_number}", color="blue")
 
 # check wallhaven folder exist not
 isExist = os.path.exists(image_save_path)
@@ -77,7 +78,6 @@ try:
     for page_number in range(int(first_number), int(second_number) + 1):
         data = search_wallpaper(query, page_number)
         wallpaper_urls = data["wallpaper_urls"]
-        last_page_number = data["last_page"]
 
 
         if len(wallpaper_urls) > 0 and page_number <= last_page_number:
