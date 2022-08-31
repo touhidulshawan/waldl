@@ -1,0 +1,37 @@
+#+title: Readme
+#+description: Descriptions about this repository
+#+author: Touhidul Shawan
+
+* waldl
+Program to download wallpapers from [[https://wallhaven.cc/][wallhaven]]
+
+* installation
+# clone the repository
+#+begin_bash options
+git clone https://github.com/touhidulshawan/waldl
+#+end_bash
+
+# go to directory
+#+begin_bash options
+cd waldl
+#+end_bash
+
+# install pipenv if not installed in your system
+#+begin_bash options
+pip install pipenv
+#+end_bash
+
+# run on waldl directory
+#+begin_bash options
+pipenv install
+#+end_bash
+
+# activate the virtualenv
+#+begin_bash options
+pipenv shell
+#+end_bash
+
+# run the program
+#+begin_bash options
+python waldl.py
+#+end_bash
