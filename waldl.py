@@ -6,15 +6,16 @@ from random import choices
 from string import ascii_lowercase, digits
 from collpy import cprint
 import os
-import sys
 
 # change this location according to your preference
-image_save_path = "/home/shawan/Pictures/wallhaven/" 
+home_directory = os.path.expanduser("~")
+image_save_path = f"{home_directory}/Pictures/Wallhaven/"
+
 
 # search wallpaper
 
 
-def search_wallpaper(query, page_number):
+def search_wallpaper(query, page_number=1):
     url = f"https://wallhaven.cc/api/v1/search?q={query}&atleast=1920x1080&ratios=16x9&sorting=views&order=desc&page={page_number}"
     res = requests.get(url)
     json_data = res.json()
@@ -51,10 +52,26 @@ def download_wallpaper(wallpaper_url):
     open(save_path, "wb").write(res.content)
 
 
+def total_pages(query):
+    data = search_wallpaper(query, page_number=1)
+    last_page_number = data["last_page"]
+    return last_page_number
+
 query = input("Enter wallpaper name keyword: ")
-page_range = input("How many pages [ex: 1-4]: ")
+cprint(txt=f"Total page found: {total_pages(query)}")
+
+# check wallhaven folder exist not
+isExist = os.path.exists(image_save_path)
+
+if isExist:
+   cprint(txt="Wallhaven directory found", color="green")
+   pass
+else:
+   os.mkdir(f'{home_directory}/Pictures/Wallhaven')
+   cprint(txt="Wallhaven directory created successfully", color="green")
 
 try:
+    page_range = input("How many pages [ex: 1-4]: ")
     first_number, second_number = page_range.split("-")
 
     for page_number in range(int(first_number), int(second_number) + 1):
@@ -79,6 +96,5 @@ try:
             break
         cprint(txt=f"Images saved on {image_save_path}", color="green")
 
-except Exception as e:
-    print(sys.exc_info())
-    # cprint(txt="Something not right :( | Try again.", color="red")
+except ValueError:
+    cprint(txt="Invalid page number. Please type like [1-10]", color="red")
