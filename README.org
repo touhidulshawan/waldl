@@ -6,32 +6,32 @@
 Program to download wallpapers from [[https://wallhaven.cc/][wallhaven]]
 
 * installation
-# clone the repository
-#+begin_bash options
+~clone the repository~
+#+begin_bash
 git clone https://github.com/touhidulshawan/waldl
 #+end_bash
 
-# go to directory
-#+begin_bash options
+~go to directory~
+#+begin_bash
 cd waldl
 #+end_bash
 
-# install pipenv if not installed in your system
-#+begin_bash options
+install pipenv if not installed in your system
+#+begin_bash
 pip install pipenv
 #+end_bash
 
-# run on waldl directory
-#+begin_bash options
+run on waldl directory
+#+begin_bash
 pipenv install
 #+end_bash
 
-# activate the virtualenv
-#+begin_bash options
+activate the virtualenv
+#+begin_bash
 pipenv shell
 #+end_bash
 
-# run the program
-#+begin_bash options
+run the program
+#+begin_bash
 python waldl.py
 #+end_bash
