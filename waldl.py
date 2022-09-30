@@ -27,12 +27,9 @@ def search_wallpaper(query, page_number=1):
         for wallpaper in json_data["data"]:
             download_path.append(wallpaper["path"])
 
-    data = {
-        "wallpaper_urls": download_path,
-        "last_page": last_page_number
-    }
+    data = {"wallpaper_urls": download_path, "last_page": last_page_number}
 
-    return data 
+    return data
 
 
 # generate random name
@@ -68,11 +65,11 @@ cprint(txt=f"Total page found: {last_page_number}", color="blue")
 isExist = os.path.exists(image_save_path)
 
 if isExist:
-   cprint(txt="Wallhaven directory found", color="green")
-   pass
+    cprint(txt="Wallhaven directory found", color="green")
+    pass
 else:
-   os.mkdir(f'{home_directory}/Pictures/Wallhaven')
-   cprint(txt="Wallhaven directory created successfully", color="green")
+    os.mkdir(f"{home_directory}/Pictures/Wallhaven")
+    cprint(txt="Wallhaven directory created successfully", color="green")
 
 try:
     page_range = input("How many pages [ex: 1-4]: ")
@@ -82,17 +79,17 @@ try:
         data = search_wallpaper(query, page_number)
         wallpaper_urls = data["wallpaper_urls"]
 
-
         if len(wallpaper_urls) > 0 and page_number <= last_page_number:
-            cprint(txt=f"[+] Downloading wallpapers of page: {page_number}", color="purple")
+            cprint(
+                txt=f"[+] Downloading wallpapers of page: {page_number}", color="purple"
+            )
 
             for url in wallpaper_urls:
                 cprint(txt=f"[+] Downloading wallpaper: [{url}]", color="blue")
                 t = threading.Thread(target=download_wallpaper, args=(url,))
                 t.start()
         elif page_number > last_page_number:
-            cprint(txt=f"Total Page found : {last_page_number}",
-                   color="orange")
+            cprint(txt=f"Total Page found : {last_page_number}", color="orange")
             break
         else:
             cprint(txt=f"404:: No image found for : {query}", color="red")
