@@ -15,8 +15,8 @@ image_save_path = f"{home_directory}/Pictures/Wallhaven/"
 # search wallpaper
 
 
-def search_wallpaper(query, page_number=1):
-    url = f"https://wallhaven.cc/api/v1/search?q={query}&atleast=1920x1080&ratios=16x9&sorting=views&order=desc&page={page_number}"
+def search_wallpaper(query: dict, page_number=1):
+    url = f"https://wallhaven.cc/api/v1/search?q={query.get('q')}&resolutions=1920x1080&ratios=16x9&sorting={query.get('sort')}&order=desc&page={page_number}"
     res = requests.get(url)
     json_data = res.json()
 
@@ -56,9 +56,13 @@ def total_pages(query):
 
 
 example_tags = ["digital art", "anime", "nature", "landscape", "4k", "artwork"]
+sorting_options = ["hot", "toplist", "views", "random", "date_added"]
 cprint(txt=f"Some tags {example_tags}", color="blue")
-query = input("Enter wallpaper tag: ")
-last_page_number = total_pages(query)
+tag_choice = input("Enter wallpaper tag: ")
+cprint(txt=f"Sorting options: {sorting_options}", color="green")
+sorting_choice = input("Sort image by: ")
+query_options = {"q": tag_choice, "sort": sorting_choice}
+last_page_number = total_pages(query_options)
 cprint(txt=f"Total page found: {last_page_number}", color="blue")
 
 # check wallhaven folder exist not
@@ -76,7 +80,7 @@ try:
     first_number, second_number = page_range.split("-")
 
     for page_number in range(int(first_number), int(second_number) + 1):
-        data = search_wallpaper(query, page_number)
+        data = search_wallpaper(query_options, page_number)
         wallpaper_urls = data["wallpaper_urls"]
 
         if len(wallpaper_urls) > 0 and page_number <= last_page_number:
