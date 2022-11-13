@@ -2,6 +2,7 @@
 
 import threading
 import requests
+import shutil
 from random import choices
 from string import ascii_lowercase, digits
 from collpy import cprint
@@ -43,11 +44,11 @@ def wallpaper_name():
 
 
 def download_wallpaper(wallpaper_url):
-    res = requests.get(url=wallpaper_url)
+    res = requests.get(url=wallpaper_url, stream=True)
     extension = os.path.splitext(wallpaper_url)[1]
     save_path = f"{image_save_path}{wallpaper_name()}{extension}"
     with open(save_path, "wb") as f:
-        f.write(res.content)
+        shutil.copyfileobj(res.raw, f)
 
 
 def total_pages(query):
