@@ -46,7 +46,8 @@ def download_wallpaper(wallpaper_url):
     res = requests.get(url=wallpaper_url)
     extension = os.path.splitext(wallpaper_url)[1]
     save_path = f"{image_save_path}{wallpaper_name()}{extension}"
-    open(save_path, "wb").write(res.content)
+    with open(save_path, "wb") as f:
+        f.write(res.content)
 
 
 def total_pages(query):
@@ -96,7 +97,7 @@ try:
             cprint(txt=f"Total Page found : {last_page_number}", color="orange")
             break
         else:
-            cprint(txt=f"404:: No image found for : {query}", color="red")
+            cprint(txt=f"404:: No image found for : {query_options}", color="red")
             break
         cprint(txt=f"Images saved on {image_save_path}", color="green")
 
