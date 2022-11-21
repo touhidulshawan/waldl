@@ -101,7 +101,7 @@ try:
         else:
             cprint(txt=f"404:: No image found for : {query_options}", color="red")
             break
-        cprint(txt=f"\nImages saved on {image_save_path}", color="green")
+        cprint(txt=f"Images saved on {image_save_path}", color="green")
 
 except ValueError:
     cprint(txt="Invalid page number. Please type like [1-10]", color="red")
