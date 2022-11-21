@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
 
-import threading
 import requests
 import shutil
 from random import choices
 from string import ascii_lowercase, digits
 from collpy import cprint
+from tqdm import tqdm
 import os
 
 # change this location according to your preference
 home_directory = os.path.expanduser("~")
 image_save_path = f"{home_directory}/Pictures/Wallhaven/"
-
 
 # search wallpaper
 
@@ -45,10 +44,15 @@ def wallpaper_name():
 
 def download_wallpaper(wallpaper_url):
     res = requests.get(url=wallpaper_url, stream=True)
+    # show error on IDE but no error on running
+    total_length = int(res.headers.get("Content-Length"))
     extension = os.path.splitext(wallpaper_url)[1]
     save_path = f"{image_save_path}{wallpaper_name()}{extension}"
-    with open(save_path, "wb") as f:
-        shutil.copyfileobj(res.raw, f)
+    with tqdm.wrapattr(
+        res.raw, "read", total=total_length, ascii=" C-", desc=""
+    ) as raw:
+        with open(save_path, "wb") as output:
+            shutil.copyfileobj(raw, output)
 
 
 def total_pages(query):
@@ -89,18 +93,15 @@ try:
             cprint(
                 txt=f"[+] Downloading wallpapers of page: {page_number}", color="purple"
             )
-
             for url in wallpaper_urls:
-                cprint(txt=f"[+] Downloading wallpaper: [{url}]", color="blue")
-                t = threading.Thread(target=download_wallpaper, args=(url,))
-                t.start()
+                download_wallpaper(url)
         elif page_number > last_page_number:
             cprint(txt=f"Total Page found : {last_page_number}", color="orange")
             break
         else:
             cprint(txt=f"404:: No image found for : {query_options}", color="red")
             break
-        cprint(txt=f"Images saved on {image_save_path}", color="green")
+        cprint(txt=f"\nImages saved on {image_save_path}", color="green")
 
 except ValueError:
     cprint(txt="Invalid page number. Please type like [1-10]", color="red")
