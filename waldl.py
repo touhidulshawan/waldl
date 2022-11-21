@@ -49,7 +49,7 @@ def download_wallpaper(wallpaper_url):
     extension = os.path.splitext(wallpaper_url)[1]
     save_path = f"{image_save_path}{wallpaper_name()}{extension}"
     with tqdm.wrapattr(
-        res.raw, "read", total=total_length, ascii=" C-", desc=""
+        res.raw, "read", total=total_length, ascii=" C-", desc="", colour="green"
     ) as raw:
         with open(save_path, "wb") as output:
             shutil.copyfileobj(raw, output)
@@ -101,7 +101,7 @@ try:
         else:
             cprint(txt=f"404:: No image found for : {query_options}", color="red")
             break
-        cprint(txt=f"Images saved on {image_save_path}", color="green")
+        cprint(txt=f"Images saved on {image_save_path}", color="blue")
 
 except ValueError:
     cprint(txt="Invalid page number. Please type like [1-10]", color="red")
