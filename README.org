@@ -35,6 +35,3 @@ run the program
 #+begin_SRC sh :results output
 python waldl.py
 #+end_SRC
-
-* usage
-[[https://asciinema.org/a/518066][https://asciinema.org/a/518066.svg]]
