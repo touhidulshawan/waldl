@@ -16,7 +16,10 @@ image_save_path = f"{home_directory}/Pictures/Wallhaven/"
 
 
 def search_wallpaper(query: dict, page_number=1):
-    url = f"https://wallhaven.cc/api/v1/search?q={query.get('q')}&resolutions=1920x1080&ratios=16x9&sorting={query.get('sort')}&order=desc&page={page_number}"
+    if query.get("nsfw") == True:
+        url = f"https://wallhaven.cc/api/v1/search?q={query.get('q')}&resolutions=1920x1080&ratios=16x9&purity=001&sorting={query.get('sort')}&order=desc&page={page_number}&apikey={query.get('api_key')}"
+    else:
+        url = f"https://wallhaven.cc/api/v1/search?q={query.get('q')}&resolutions=1920x1080&ratios=16x9&sorting={query.get('sort')}&order=desc&page={page_number}"
     res = requests.get(url)
     json_data = res.json()
 
@@ -61,13 +64,49 @@ def total_pages(query):
     return last_page_number
 
 
+# NSFW = not safe for work
+is_nsfw = False
 example_tags = ["digital art", "anime", "nature", "landscape", "4k", "artwork"]
 sorting_options = ["hot", "toplist", "views", "random", "date_added"]
 cprint(txt=f"Some tags {example_tags}", color="blue")
 tag_choice = input("Enter wallpaper tag: ")
 cprint(txt=f"Sorting options: {sorting_options}", color="green")
 sorting_choice = input("Sort image by: ")
-query_options = {"q": tag_choice, "sort": sorting_choice}
+
+nsfw_choice = input("Do you want to download NSFW [not safe for work]: (y/n): ")
+api_key = ""
+if nsfw_choice.lower() == "y":
+    is_nsfw = True
+
+    # check if api key exist or not
+
+    if os.path.exists("./api_key"):
+        with open("./api_key", "r") as file:
+            api_key = file.read()
+            file.close()
+    else:
+        api_key = input("Enter your api key: ")
+        save_api_choice = input("Save your api key on file: (y/n) ")
+        # save api key to file
+        if save_api_choice.lower() == "y":
+            with open("api_key", "w") as file:
+                file.write(api_key)
+                cprint(txt="Api key saved on file", color="green")
+                file.close
+
+
+elif nsfw_choice.lower() == "n":
+    is_nsfw = False
+else:
+    cprint(txt="Incorrect choice!! Try agian.", color="red")
+    exit(0)
+
+query_options = {
+    "q": tag_choice,
+    "sort": sorting_choice,
+    "nsfw": is_nsfw,
+    "api_key": api_key,
+}
 last_page_number = total_pages(query_options)
 cprint(txt=f"Total page found: {last_page_number}", color="blue")
 
