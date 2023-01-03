@@ -36,3 +36,5 @@ run the program
 python waldl.py
 #+end_SRC
 
+** Screenshot
+[[https://raw.githubusercontent.com/touhidulshawan/dotfiles/main/.screenshots/waldl.png]]
