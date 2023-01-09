@@ -67,7 +67,7 @@ def total_pages(query):
 # NSFW = not safe for work
 is_nsfw = False
 example_tags = ["digital art", "anime", "nature", "landscape", "4k", "artwork"]
-sorting_options = ["hot", "toplist", "views", "random", "date_added"]
+sorting_options = ["relevance", "hot", "toplist", "views", "random", "date_added"]
 cprint(txt=f"Some tags {example_tags}", color="blue")
 tag_choice = input("Enter wallpaper tag: ")
 cprint(txt=f"Sorting options: {sorting_options}", color="green")
