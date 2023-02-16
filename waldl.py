@@ -16,7 +16,7 @@ image_save_path = f"{home_directory}/Pictures/Wallhaven/"
 
 
 def search_wallpaper(query: dict, page_number=1):
-    if query.get("nsfw") == True:
+    if query.get("nsfw") is True:
         url = f"https://wallhaven.cc/api/v1/search?q={query.get('q')}&resolutions=1920x1080&ratios=16x9&purity=001&sorting={query.get('sort')}&order=desc&page={page_number}&apikey={query.get('api_key')}"
     else:
         url = f"https://wallhaven.cc/api/v1/search?q={query.get('q')}&resolutions=1920x1080&ratios=16x9&sorting={query.get('sort')}&order=desc&page={page_number}"
