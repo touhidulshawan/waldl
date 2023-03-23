@@ -6,6 +6,7 @@ from random import choices
 from string import ascii_lowercase, digits
 from collpy import cprint
 from tqdm import tqdm
+from random import choice
 import os
 
 # change this location according to your preference
@@ -42,6 +43,14 @@ def wallpaper_name():
     return "".join(choices(ascii_lowercase + digits, k=8))
 
 
+# return random color hex value
+
+
+def random_color():
+    hex_color = "#" + "".join([choice("ABCDEF0123456789") for i in range(6)])
+    return hex_color
+
+
 # download wallpaper
 
 
@@ -52,7 +61,7 @@ def download_wallpaper(wallpaper_url):
     extension = os.path.splitext(wallpaper_url)[1]
     save_path = f"{image_save_path}{wallpaper_name()}{extension}"
     with tqdm.wrapattr(
-        res.raw, "read", total=total_length, ascii=" C-", desc="", colour="yellow"
+        res.raw, "read", total=total_length, ascii="░▒█", desc="", colour=random_color()
     ) as raw:
         with open(save_path, "wb") as output:
             shutil.copyfileobj(raw, output)
