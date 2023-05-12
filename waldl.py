@@ -45,8 +45,8 @@ def wallpaper_name():
 
 
 def random_color():
-    hex_color = "#" + "".join([choice("ABCDEF0123456789") for i in range(6)])
-    return hex_color
+    colors_list = ["#BA38F2", "#5F45BF", "#3B2E8C", "#165F8C", "#D95E52"]
+    return choice(colors_list)
 
 
 # download wallpaper
@@ -74,13 +74,15 @@ def total_pages(query):
 # NSFW = not safe for work
 is_nsfw = False
 example_tags = ["digital art", "anime", "nature", "landscape", "4k", "artwork"]
-sorting_options = ["relevance", "hot", "toplist", "views", "random", "date_added"]
+sorting_options = ["relevance", "hot",
+                   "toplist", "views", "random", "date_added"]
 cprint(txt=f"Some tags {example_tags}", color="blue")
 tag_choice = input("Enter wallpaper tag: ")
 cprint(txt=f"Sorting options: {sorting_options}", color="green")
 sorting_choice = input("Sort image by: ")
 
-nsfw_choice = input("Do you want to download NSFW [not safe for work]: (y/n): ")
+nsfw_choice = input(
+    "Do you want to download NSFW [not safe for work]: (y/n): ")
 api_key = ""
 if nsfw_choice.lower() == "y":
     is_nsfw = True
@@ -144,10 +146,12 @@ try:
             for url in wallpaper_urls:
                 download_wallpaper(url)
         elif page_number > last_page_number:
-            cprint(txt=f"Total Page found : {last_page_number}", color="orange")
+            cprint(
+                txt=f"Total Page found : {last_page_number}", color="orange")
             break
         else:
-            cprint(txt=f"404:: No image found for : {query_options}", color="red")
+            cprint(
+                txt=f"404:: No image found for : {query_options}", color="red")
             break
 
 except ValueError:
