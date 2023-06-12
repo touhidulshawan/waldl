@@ -2,6 +2,8 @@
 #+description: Descriptions about this repository
 #+author: Touhidul Shawan
 
+[[./cover/2023-06-12-23:40:06-screenshot.png]]
+
 * introduction
 Script to download wallpapers from [[https://wallhaven.cc/][wallhaven]]
 
@@ -35,6 +37,3 @@ run the program
 #+begin_SRC sh :results output
 python waldl.py
 #+end_SRC
-
-** Screenshot
-[[https://raw.githubusercontent.com/touhidulshawan/dotfiles/main/.screenshots/waldl.png]]
