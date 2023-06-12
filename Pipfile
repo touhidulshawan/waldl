@@ -7,7 +7,7 @@ name = "pypi"
 requests = "*"
 collpy = "*"
 black = "*"
-tqdm = "*"
+progressbar2 = "*"
 
 [dev-packages]
 

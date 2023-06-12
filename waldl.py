@@ -1,10 +1,14 @@
 import requests
-import shutil
 from random import choices
 from string import ascii_lowercase, digits
 from collpy import cprint
-from tqdm import tqdm
-from random import choice
+from progressbar import (
+    ProgressBar,
+    Percentage,
+    FileTransferSpeed,
+    ReverseBar,
+    DataSize,
+    AnimatedMarker)
 import os
 
 # change this location according to your preference
@@ -40,29 +44,30 @@ def search_wallpaper(query: dict, page_number=1):
 def wallpaper_name():
     return "".join(choices(ascii_lowercase + digits, k=8))
 
-
-# return random color hex value
-
-
-def random_color():
-    colors_list = ["#BA38F2", "#5F45BF", "#3B2E8C", "#165F8C", "#D95E52"]
-    return choice(colors_list)
-
-
 # download wallpaper
 
 
 def download_wallpaper(wallpaper_url):
-    res = requests.get(url=wallpaper_url, stream=True)
-    # show error on IDE but no error on running
-    total_length = int(res.headers.get("Content-Length"))
+    response = requests.get(url, stream=True)
+    total_size = int(response.headers.get('content-length', 0))
+    block_size = 1024  # 1 Kibibyte
+
     extension = os.path.splitext(wallpaper_url)[1]
     save_path = f"{image_save_path}{wallpaper_name()}{extension}"
-    with tqdm.wrapattr(
-        res.raw, "read", total=total_length, ascii="░▒█", desc="", colour=random_color()
-    ) as raw:
-        with open(save_path, "wb") as output:
-            shutil.copyfileobj(raw, output)
+
+    widgets = ['[ ', AnimatedMarker(), ' ]', FileTransferSpeed(), ' ', ReverseBar(),
+               '< ', Percentage(), ' >  ', DataSize()]
+
+    progress_bar = ProgressBar(widgets=widgets, maxval=total_size).start()
+    downloaded_size = 0
+
+    with open(save_path, 'wb') as file:
+        for data in response.iter_content(block_size):
+            downloaded_size += len(data)
+            file.write(data)
+            progress_bar.update(downloaded_size)
+
+    progress_bar.finish()
 
 
 def total_pages(query):
@@ -77,12 +82,11 @@ example_tags = ["digital art", "anime", "nature", "landscape", "4k", "artwork"]
 sorting_options = ["relevance", "hot",
                    "toplist", "views", "random", "date_added"]
 cprint(txt=f"Some tags {example_tags}", color="blue")
-tag_choice = input("Enter wallpaper tag: ")
+tag_choice = input("[?] Enter wallpaper tag: ")
 cprint(txt=f"Sorting options: {sorting_options}", color="green")
-sorting_choice = input("Sort image by: ")
-
+sorting_choice = input("[?] Sort image by (default -> relevance): ") or "relevance"
 nsfw_choice = input(
-    "Do you want to download NSFW [not safe for work]: (y/n): ")
+    "[?] Do you want to download NSFW [not safe for work]: (y/n): ")
 api_key = ""
 if nsfw_choice.lower() == "y":
     is_nsfw = True
