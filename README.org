@@ -35,5 +35,5 @@ pipenv shell
 
 run the program
 #+begin_SRC sh :results output
-python waldl.py
+python main.py
 #+end_SRC
