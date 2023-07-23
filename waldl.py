@@ -1,3 +1,4 @@
+import os
 from collpy import cprint
 from progressbar import (
     ProgressBar,
@@ -5,8 +6,8 @@ from progressbar import (
     FileTransferSpeed,
     ReverseBar,
     DataSize,
-    AnimatedMarker)
-import os
+    AnimatedMarker,
+)
 import requests
 
 import modules.query_action as query
@@ -20,19 +21,29 @@ from modules.random_wallpaper_name import wallpaper_name
 
 def download_wallpaper(wallpaper_url):
     response = requests.get(url, stream=True)
-    total_size = int(response.headers.get('content-length', 0))
+    total_size = int(response.headers.get("content-length", 0))
     block_size = 1024  # 1 Kibibyte
 
     extension = os.path.splitext(wallpaper_url)[1]
     save_path = f"{checkpoint.image_save_path}{wallpaper_name()}{extension}"
 
-    widgets = ['[ ', AnimatedMarker(), ' ]', FileTransferSpeed(), ' ', ReverseBar(),
-               '< ', Percentage(), ' >  ', DataSize()]
+    widgets = [
+        "[ ",
+        AnimatedMarker(),
+        " ]",
+        FileTransferSpeed(),
+        " ",
+        ReverseBar(),
+        "< ",
+        Percentage(),
+        " >  ",
+        DataSize(),
+    ]
 
     progress_bar = ProgressBar(widgets=widgets, maxval=total_size).start()
     downloaded_size = 0
 
-    with open(save_path, 'wb') as file:
+    with open(save_path, "wb") as file:
         for data in response.iter_content(block_size):
             downloaded_size += len(data)
             file.write(data)
@@ -45,8 +56,7 @@ try:
     page_range = input("How many pages [ex: 1-4]: ")
     first_number, second_number = page_range.split("-")
 
-    cprint(
-        txt=f"Wallpaper will save on {checkpoint.image_save_path}", color="blue")
+    cprint(txt=f"Wallpaper will save on {checkpoint.image_save_path}", color="blue")
 
     for page_number in range(int(first_number), int(second_number) + 1):
         data = sw.search_wallpaper(query.query_options, page_number)
@@ -59,12 +69,10 @@ try:
             for url in wallpaper_urls:
                 download_wallpaper(url)
         elif page_number > query.last_page_number:
-            cprint(
-                txt=f"Total Page found : {query.last_page_number}", color="orange")
+            cprint(txt=f"Total Page found : {query.last_page_number}", color="orange")
             break
         else:
-            cprint(
-                txt=f"404:: No image found for : {query.query_options}", color="red")
+            cprint(txt=f"404:: No image found for : {query.query_options}", color="red")
             break
 
 except ValueError:

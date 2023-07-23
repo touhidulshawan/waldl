@@ -8,6 +8,8 @@ requests = "*"
 collpy = "*"
 black = "*"
 progressbar2 = "*"
+pylint = "*"
+flake8 = "*"
 
 [dev-packages]
 
