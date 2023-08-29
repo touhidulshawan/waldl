@@ -13,7 +13,7 @@ def total_pages(query):
 query_options = {
     "q": uc.tag_choice,
     "sort": uc.sorting_choice,
-    "nsfw": uc.is_nsfw,
+    "purity_choice": uc.purity_choice,
     "api_key": api.api_key,
 }
 
