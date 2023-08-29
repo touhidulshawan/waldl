@@ -22,7 +22,7 @@ from modules.random_wallpaper_name import wallpaper_name
 def download_wallpaper(wallpaper_url):
     response = requests.get(url, stream=True)
     total_size = int(response.headers.get("content-length", 0))
-    block_size = 1024  # 1 Kibibyte
+    block_size = 1024  # 1 kb
 
     extension = os.path.splitext(wallpaper_url)[1]
     save_path = f"{checkpoint.image_save_path}{wallpaper_name()}{extension}"

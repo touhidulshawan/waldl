@@ -17,4 +17,4 @@ else:
         with open("api_key", "w") as file:
             file.write(api_key)
             cprint(txt="Api key saved on file", color="green")
-            file.close
+            file.close()

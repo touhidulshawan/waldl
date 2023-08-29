@@ -14,8 +14,8 @@ query_options = {
     "q": uc.tag_choice,
     "sort": uc.sorting_choice,
     "purity_choice": uc.purity_choice,
-    "width": uc.resulation_width,
-    "height": uc.resulation_height,
+    "width": uc.resolution_width,
+    "height": uc.resolution_height,
     "api_key": api.api_key,
 }
 

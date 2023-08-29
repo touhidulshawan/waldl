@@ -28,15 +28,15 @@ print(
 )
 purity_choice = int(input("Enter you choice: ")) or 1
 
-resulation_width = 1920
-resulation_height = 1080
-print("\nDefault resulation: 1920x1080")
-resulation_choice = input("Custom resulation: (y/n): ") or "n"
+resolution_width = 1920
+resolution_height = 1080
+print("\nDefault resolution: 1920x1080")
+resolution_choice = input("Custom resolution: (y/n): ") or "n"
 
-if resulation_choice.lower() == "y":
-    resulation_width = int(input("Width: "))
-    resulation_height = int(input("Height: "))
-elif resulation_choice.lower() == "n":
-    print("Selecting default(1920x1080) resulation...")
+if resolution_choice.lower() == "y":
+    resolution_width = int(input("Width: "))
+    resolution_height = int(input("Height: "))
+elif resolution_choice.lower() == "n":
+    print("Selecting default(1920x1080) resolution...")
 else:
-    print("Selecting default(1920x1080) resulation...")
+    print("Selecting default(1920x1080) resolution...")
