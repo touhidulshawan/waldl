@@ -26,3 +26,9 @@ important: install necessary python dependencies.
 #+begin_SRC sh :results output
 python waldl.py
 #+end_SRC
+
+* NSFW [Not Safe For Work]
+To download NSFW wallpapers you have to add you =api= key.
+- Create or sign-in an Account on [[https://wallhaven.cc][wallhaven.cc]]
+- Go to =Setting > Account= from User Menu
+- Generate an =API= key
