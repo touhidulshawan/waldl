@@ -8,32 +8,21 @@
 Script to download wallpapers from [[https://wallhaven.cc/][wallhaven]]
 
 * installation
-clone the repository
+- clone the repository
 #+begin_SRC sh :results output
 git clone https://github.com/touhidulshawan/waldl
 #+end_SRC
 
-go to directory
+- go to directory
 #+begin_SRC sh :results output
 cd waldl
 #+end_SRC
 
-install pipenv if not installed in your system
-#+begin_SRC sh :results output
-pip install pipenv
-#+end_SRC
+#+begin_quote
+important: install necessary python dependencies.
+#+end_quote
 
-run on waldl directory
-#+begin_SRC sh :results output
-pipenv install
-#+end_SRC
-
-activate the virtualenv
-#+begin_SRC sh :results output
-pipenv shell
-#+end_SRC
-
-run the program
+* run the program
 #+begin_SRC sh :results output
 python waldl.py
 #+end_SRC
