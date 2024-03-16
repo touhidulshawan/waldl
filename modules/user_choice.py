@@ -7,12 +7,15 @@ print(
 =================================="""
 )
 
-example_keyword = ["digital art", "anime", "nature", "landscape", "4k", "artwork"]
-sorting_options = ["relevance", "hot", "toplist", "views", "random", "date_added"]
+example_keyword = ["digital art", "anime",
+                   "nature", "landscape", "4k", "artwork"]
+sorting_options = ["relevance", "hot",
+                   "toplist", "views", "random", "date_added"]
 cprint(txt=f"Some tags {example_keyword}", color="blue")
 tag_choice = input("[?] Enter wallpaper search keyword: ")
 cprint(txt=f"Sorting options: {sorting_options}", color="green")
-sorting_choice = input("[?] Sort image by (default -> relevance): ") or "relevance"
+sorting_choice = input(
+    "[?] Sort image by (default -> relevance): ") or "relevance"
 print(
     """
 -------------------------------------
@@ -26,7 +29,7 @@ print(
 =====================================
 """
 )
-purity_choice = int(input("Enter you choice: ")) or 1
+purity_choice = int(input("Enter you choice: ") or 1)
 
 resolution_width = 1920
 resolution_height = 1080
