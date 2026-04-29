@@ -24,7 +24,8 @@ python waldl.py
 #+end_SRC
 #+end_quote
 * NSFW [Not Safe For Work]
-To download NSFW wallpapers you have to add you =api= key.
+  + [X] [[https:github.com/touhidulshawan/waldl/issues/2][Will NSFW be supported?]]
+*** To download NSFW wallpapers you have to add you =api= key.
 - Create or sign-in an Account on [[https://wallhaven.cc][wallhaven.cc]]
 - Go to =Setting > Account= from User Menu
 - Generate an =API= key
