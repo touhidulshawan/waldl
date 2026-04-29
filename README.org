@@ -2,11 +2,10 @@
 #+description: Script to download images from wallhaven.cc 
 #+author: Touhidul Shawan
 
-[[ ./demo.gif]]
+[[file:demo.gif]]
 
 * introduction
 Script to download wallpapers from [[https://wallhaven.cc/][wallhaven]]
-
 * installation
 #+begin_quote
 - clone the repository
@@ -24,7 +23,6 @@ cd waldl
 python waldl.py
 #+end_SRC
 #+end_quote
-
 * NSFW [Not Safe For Work]
 To download NSFW wallpapers you have to add you =api= key.
 - Create or sign-in an Account on [[https://wallhaven.cc][wallhaven.cc]]
