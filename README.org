@@ -1,34 +1,31 @@
 #+title: Waldl
-#+description: Descriptions about this repository
+#+description: Script to download images from wallhaven.cc 
 #+author: Touhidul Shawan
 
-[[./cover/2023-08-29-20:07:39-screenshot.png]]
+[[file:demo.gif]]
 
 * introduction
 Script to download wallpapers from [[https://wallhaven.cc/][wallhaven]]
-
 * installation
+#+begin_quote
 - clone the repository
 #+begin_SRC sh :results output
 git clone https://github.com/touhidulshawan/waldl
 #+end_SRC
-
 - go to directory
 #+begin_SRC sh :results output
 cd waldl
 #+end_SRC
+~important: First install necessary python dependencies.~
 
-#+begin_quote
-important: install necessary python dependencies.
-#+end_quote
-
-* run the program
+- run the program
 #+begin_SRC sh :results output
 python waldl.py
 #+end_SRC
-
+#+end_quote
 * NSFW [Not Safe For Work]
-To download NSFW wallpapers you have to add you =api= key.
++ [X] [[https:waldl/issues/2][Will NSFW supported?]]
+*** To download NSFW wallpapers you have to add you =api= key.
 - Create or sign-in an Account on [[https://wallhaven.cc][wallhaven.cc]]
 - Go to =Setting > Account= from User Menu
 - Generate an =API= key

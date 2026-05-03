@@ -4,12 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-requests = "*"
 collpy = "*"
-black = "*"
 progressbar2 = "*"
 pylint = "*"
 flake8 = "*"
+black = "*"
+pip = "*"
+requests = "*"
 
 [dev-packages]
 
