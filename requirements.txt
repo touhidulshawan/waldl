@@ -1,9 +1,9 @@
 -i https://pypi.org/simple
 astroid==3.3.10; python_full_version >= '3.9.0'
-black==26.3.1; python_version >= '3.10'
-certifi==2026.4.22; python_version >= '3.7'
-charset-normalizer==3.4.7; python_version >= '3.7'
-click==8.3.3; python_version >= '3.10'
+black==26.3.1; python_version >= '3.9'
+certifi==2025.4.26; python_version >= '3.6'
+charset-normalizer==3.4.2; python_version >= '3.7'
+click==8.2.1; python_version >= '3.10'
 collpy==0.0.4; python_version >= '3.6'
 dill==0.4.0; python_version >= '3.8'
 flake8==7.2.0; python_version >= '3.9'
