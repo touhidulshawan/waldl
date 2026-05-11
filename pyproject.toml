@@ -1,0 +1,15 @@
+[project]
+name = "waldl"
+version = "0.1.0"
+description = "Script to download wallpaper from wallhaven.cc"
+readme = "README.org"
+requires-python = ">=3.14"
+dependencies = [
+    "black>=26.3.1",
+    "collpy>=0.0.4",
+    "flake8>=7.3.0",
+    "isort>=8.0.1",
+    "progressbar2>=4.5.0",
+    "pylint>=4.0.5",
+    "requests>=2.33.1",
+]
