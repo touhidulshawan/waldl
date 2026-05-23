@@ -20,7 +20,7 @@ dill==0.4.1
     # via pylint
 flake8==7.3.0
     # via waldl
-idna==3.14
+idna==3.15
     # via requests
 isort==8.0.1
     # via
