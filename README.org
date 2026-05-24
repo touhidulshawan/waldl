@@ -9,10 +9,15 @@ Script to download wallpapers from [[https://wallhaven.cc/][wallhaven]]
 * installation
 #+begin_quote
 - clone the repository
++ Github
 #+begin_SRC sh :results output
 git clone https://github.com/touhidulshawan/waldl
 #+end_SRC
-- go to directory
++ Codeberg
+#+begin_src sh :results output
+git clone [[https://codeberg.org/touhidulshawan/waldl.git]]
+#+end_src
++ go to directory
 #+begin_SRC sh :results output
 cd waldl
 #+end_SRC
