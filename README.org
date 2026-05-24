@@ -15,7 +15,7 @@ git clone https://github.com/touhidulshawan/waldl
 #+end_SRC
 + Codeberg
 #+begin_src sh :results output
-git clone [[https://codeberg.org/touhidulshawan/waldl.git]]
+git clone https://codeberg.org/touhidulshawan/waldl.git
 #+end_src
 + go to directory
 #+begin_SRC sh :results output
