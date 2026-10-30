@@ -46,7 +46,7 @@ pycodestyle==2.14.0
     # via flake8
 pyflakes==3.4.0
     # via flake8
-pylint==4.0.5
+pylint==4.0.9
     # via waldl
 python-utils==3.9.1
     # via progressbar2
